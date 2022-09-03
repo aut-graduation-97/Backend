@@ -4,12 +4,15 @@
   "description": "This is a repo for the AUT's 1401 graduation ceremony",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "node",
     "express"
   ],
   "author": "sina shariati <sina.shariati@yahoo.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.0.2"
+  }
 }
