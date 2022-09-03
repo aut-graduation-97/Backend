@@ -1,0 +1,15 @@
+{
+  "name": "aut_graduation_website_backend",
+  "version": "1.0.0",
+  "description": "This is a repo for the AUT's 1401 graduation ceremony",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "sina shariati <sina.shariati@yahoo.com>",
+  "license": "ISC"
+}
