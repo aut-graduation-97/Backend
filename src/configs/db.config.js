@@ -3,7 +3,8 @@ const db = {
     port: process.env.DB_PORT,
     document: process.env.DB_DOCUMENT,
     username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD
+    password: process.env.DB_PASSWORD,
+    options: process.env.OPTIONS,
 };
 
 module.exports = db;

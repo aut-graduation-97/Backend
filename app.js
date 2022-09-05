@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+// define routes
+
+
 app.use((req, res, next) => {
     next(createError(404));
 });
