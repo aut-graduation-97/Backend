@@ -6,7 +6,8 @@ COPY package.json .
 COPY package-lock.json .
 USER node
 COPY src .
-COPY index.js .
+COPY server.js .
+COPY app.js .
 
 FROM node:slim as production
 
@@ -21,7 +22,7 @@ USER node
 
 EXPOSE 8080
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.js" ]
 
 FROM node:alpine as development
 
