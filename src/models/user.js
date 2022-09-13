@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
     content: {
         type: String,
-        required: [true, 'Comment requires the content!'],
+        required: [true, 'Comment requires content'],
         validate: {
             validator: (content) => content.length < 260,
-            message: 'Comment must be less than 260 characters.',
+            message: 'Comment must be less than 260 characters',
         }
     }
 });
@@ -49,7 +49,7 @@ const UserSchema = new Schema({
     bio: String,
     avatar: String,
     comments: [
-        CommentSchema
+        CommentSchema,
     ],
     tarin: [
         TarinSchema,

@@ -14,7 +14,6 @@
   "author": "sina shariati <sina.shariati@yahoo.com> | ali moradzade <alimorizz1379@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.0.2",
     "nodemon": "^2.0.19"
   },
   "dependencies": {
