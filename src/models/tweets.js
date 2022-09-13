@@ -36,5 +36,9 @@ const TweetSchema = new Schema({
     }
 });
 
+TweetSchema.virtual('likesCount').get(function () {
+    return this.likes.length;
+});
+
 const Tweet = mongoose.model('tweet', TweetSchema);
 module.exports = Tweet;
