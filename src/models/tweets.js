@@ -15,10 +15,10 @@ const TweetSchema = new Schema({
     ],
     text: {
         type: String,
-        required: [true, 'Text is required.'],
+        required: [true, 'Text is required'],
         validate: {
             validator: (text) => text.length <= 180,
-            message: "Text must be less than 180 characters."
+            message: "Text must be less than 180 characters"
         },
     },
     images: [
@@ -26,7 +26,7 @@ const TweetSchema = new Schema({
             type: String,
             validate: {
                 validator: (image) => image.length <= 200,
-                message: "Image URL must be less than 200 characters."
+                message: "Image URL must be less than 200 characters"
             }
         },
     ],
