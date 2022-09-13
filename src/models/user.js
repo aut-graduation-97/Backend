@@ -58,6 +58,15 @@ const UserSchema = new Schema({
     ],
 });
 
+UserSchema.pre('remove', function (next) {
+    const Tweet = mongoose.model('tweet');
+
+    Tweet.deleteMany({userId: this._id})
+        .then(() => {
+            next();
+        });
+});
+
 const User = mongoose.model('user', UserSchema);
 module.exports = User;
 
