@@ -38,7 +38,7 @@ describe('Updating records', () => {
             .then(() => User.find({}))
             .then((users) => {
                 assert(users[0].name === 'Alex');
-                assert(users[0].name === 'Alex');
+                assert(users[0].studentId.toString() === '123456');
                 done();
             });
     });
