@@ -18,5 +18,9 @@ beforeEach((done) => {
     mongoose.connection.collections.users.drop()
         .then(
             mongoose.connection.collections.galleries.drop()
-                .then(done()));
+        )
+        .then(
+            mongoose.connection.collections.tweets.drop()
+        )
+        .then(done());
 });
