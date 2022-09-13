@@ -1,3 +1,5 @@
+// noinspection JSCheckFunctionSignatures
+
 const mongoose = require('mongoose');
 
 mongoose.connect(`mongodb://localhost/aut_graduation_test`);
@@ -13,8 +15,8 @@ before((done) => {
 });
 
 beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-        // Ready to run the next test!
-        done();
-    });
+    mongoose.connection.collections.users.drop()
+        .then(
+            mongoose.connection.collections.galleries.drop()
+                .then(done()));
 });

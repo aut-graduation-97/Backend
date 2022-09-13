@@ -33,6 +33,8 @@ const UserSchema = new Schema({
     studentId: {
         type: String,
         required: [true, 'Student id is required'],
+        unique: true,
+        dropDups: true,
     },
     password: {
         type: String,

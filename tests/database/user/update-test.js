@@ -1,9 +1,11 @@
 const assert = require('assert');
-const User = require('../../src/models/user');
+const User = require('../../../src/models/user');
 
-describe('Creating records', () => {
-    it('saves a user', (done) => {
-        const user = new User({
+describe('Updating records', () => {
+    let user;
+
+    beforeEach((done) => {
+        user = new User({
             name: 'Joe',
             studentId: '123456',
             password: '123456',
@@ -26,7 +28,17 @@ describe('Creating records', () => {
 
         user.save()
             .then(() => {
-                assert(!user.isNew);
+                done();
+            });
+
+    });
+
+    it('update user name', (done) => {
+        User.updateOne({name: 'Joe'}, {name: 'Alex'})
+            .then(() => User.find({}))
+            .then((users) => {
+                assert(users[0].name === 'Alex');
+                assert(users[0].name === 'Alex');
                 done();
             });
     });

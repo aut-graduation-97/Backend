@@ -1,8 +1,8 @@
 const assert = require('assert');
-const User = require('../../src/models/user');
+const User = require('../../../src/models/user');
 
-describe('Deleting a user', () => {
-    beforeEach((done) => {
+describe('Creating records', () => {
+    it('saves a user', (done) => {
         const user = new User({
             name: 'Joe',
             studentId: '123456',
@@ -26,16 +26,7 @@ describe('Deleting a user', () => {
 
         user.save()
             .then(() => {
-                done();
-            });
-
-    });
-
-    it('removing a user', (done) => {
-        User.findOneAndRemove({name: 'Joe'})
-            .then(() => User.findOne({name: 'Joe'}))
-            .then((user) => {
-                assert(user === null);
+                assert(!user.isNew);
                 done();
             });
     });
