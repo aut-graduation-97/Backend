@@ -24,7 +24,6 @@ describe('Deleting a gallery', () => {
         Gallery.deleteOne({_id: gallery._id})
             .then(() => Gallery.findOne({images: gallery.images}))
             .then((gallery) => {
-                console.log(gallery);
                 assert(gallery === null);
                 done();
             });

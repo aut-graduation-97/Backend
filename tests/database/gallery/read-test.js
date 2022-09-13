@@ -25,10 +25,12 @@ describe('Reading galleries out of the database', () => {
         Gallery.findOne({
             _id: gallery._id
         }).then((gallery) => {
-            assert(gallery.images[0] === 'url1');
-            assert(gallery.images[1] === 'url2');
-            assert(gallery.images[2] === 'url3');
-            assert(gallery.images[3] === 'url4');
+            assert(
+                gallery.images[0] === 'url1' &&
+                gallery.images[1] === 'url2' &&
+                gallery.images[2] === 'url3' &&
+                gallery.images[3] === 'url4'
+            );
             done();
         });
     });
