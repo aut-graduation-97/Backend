@@ -15,12 +15,12 @@ before((done) => {
 });
 
 beforeEach((done) => {
-    mongoose.connection.collections.users.drop()
-        .then(
-            mongoose.connection.collections.galleries.drop()
-        )
+    mongoose.connection.collections.galleries.drop()
         .then(
             mongoose.connection.collections.tweets.drop()
+        )
+        .then(
+            mongoose.connection.collections.users.drop()
         )
         .then(done());
 });

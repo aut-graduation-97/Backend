@@ -9,7 +9,7 @@ const GallerySchema = new Schema({
             unique: true,
             validate: {
                 validator: (image) => image.length <= 200,
-                message: "Image URL must be less than 200 characters."
+                message: "Image URL must be less than 200 characters"
             }
         },
     ],
