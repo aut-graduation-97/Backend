@@ -1,6 +1,6 @@
 const assert = require('assert');
-const Tweet = require('../../../src/models/tweets');
-const User = require('../../../src/models/user');
+const Tweet = require('../../../db/models/tweets');
+const User = require('../../../db/models/user');
 
 describe('Updating records', () => {
     let user;

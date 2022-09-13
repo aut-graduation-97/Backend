@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Gallery = require('../../../src/models/gallery');
+const Gallery = require('../../../db/models/gallery');
 
 describe('Creating records', () => {
     beforeEach((done) => {

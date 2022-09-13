@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const assert = require('assert');
 
-const User = require('../../../src/models/user');
-const Tweet = require('../../../src/models/tweets');
+const User = require('../../../db/models/user');
+const Tweet = require('../../../db/models/tweets');
 
 describe('Middleware (remove all of user tweets, after its deletion)', () => {
     let joe, tweet1, tweet2;

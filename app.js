@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('./src/middlewares/logger.middelware');
+const routes = require('./src/routes/routes');
 
 const app = express();
 
@@ -11,11 +12,13 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // define routes
+routes(app);
 
 
 app.use((req, res, next) => {
     next(createError(404));
 });
+
 
 app.use((err, req, res) => {
     //log as error if it is an internal server error

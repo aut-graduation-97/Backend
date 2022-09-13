@@ -1,6 +1,6 @@
 const assert = require('assert');
-const User = require('../../../src/models/user');
-const Tweet = require('../../../src/models/tweets');
+const User = require('../../../db/models/user');
+const Tweet = require('../../../db/models/tweets');
 
 describe('Virtual Types', () => {
     it('likesCount returns number of likes', (done) => {
