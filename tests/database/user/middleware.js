@@ -37,7 +37,6 @@ describe('Middleware (remove all of user tweets, after its deletion)', () => {
         joe.remove()
             .then(() => Tweet.count())
             .then((count) => {
-                console.log(count);
                 assert(count === 0);
                 done();
             });
