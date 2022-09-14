@@ -9,6 +9,10 @@ const CommentSchema = new Schema({
             validator: (content) => content.length < 260,
             message: 'Comment must be less than 260 characters',
         }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     }
 });
 
