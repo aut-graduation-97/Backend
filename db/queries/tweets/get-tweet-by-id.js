@@ -6,5 +6,5 @@ const Tweet = require('../../models/tweets');
  * @return {promise} A promise that resolves with the Tweet that matches the id
  */
 module.exports = (_id) => {
-    return Tweet.findById(_id);
+    return Tweet.findOne({ _id });
 };

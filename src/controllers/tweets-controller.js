@@ -1,20 +1,21 @@
-const getAllTweets = require('../../db/queries/tweets/get-all-tweets');
-const getTweetById = require('../../db/queries/tweets/get-tweet-by-id');
-const createTweet = require('../../db/queries/tweets/create-tweet');
-const deleteTweet = require('../../db/queries/tweets/delete-tweet');
+const tweetsService = require('../services/tweets.service');
 
 module.exports = {
     getAllTweets(req, res) {
-        getAllTweets()
+        tweetsService.getAllTweetsService()
             .then(tweets => {
                 res.send(tweets);
+            })
+            .catch(err => {
+                console.log(err);
+                res.send('Something went wrong');
             });
     },
 
     getTweetById(req, res) {
         const id = req.params.id;
 
-        getTweetById(id)
+        tweetsService.getTweetByIdService(id)
             .then(tweet => {
                 res.send(tweet);
             });
@@ -23,7 +24,7 @@ module.exports = {
     createTweet(req, res) {
         const tweetProps = req.body;
 
-        createTweet(tweetProps)
+        tweetsService.createTweetService(tweetProps)
             .then(tweet => {
                 res.send(tweet);
             });
@@ -32,9 +33,9 @@ module.exports = {
     deleteTweet(req, res) {
         const id = req.params.id;
 
-        deleteTweet(id)
-            .then(tweet => {
-                res.send(tweet);
+        tweetsService.deleteTweetService(id)
+            .then(() => {
+                res.send({id});
             });
     },
 };
