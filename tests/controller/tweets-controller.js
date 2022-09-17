@@ -5,7 +5,7 @@ const app = require('../../app');
 const mongoose = require('mongoose');
 const {response} = require("express");
 const Tweet = mongoose.model('tweet');
-const User = require('../../db/models/user');
+const User = require('../../src/db/models/user');
 
 describe('Tweets controller', () => {
     it('GET to /tweets gets all tweets', (done) => {

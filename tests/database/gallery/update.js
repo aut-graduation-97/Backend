@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Gallery = require('../../../db/models/gallery');
+const Gallery = require('../../../src/db/models/gallery');
 
 describe('Reading galleries out of the database', () => {
     let gallery;
