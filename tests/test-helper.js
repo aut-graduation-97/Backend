@@ -16,3 +16,10 @@ beforeEach((done) => {
         .then(() => done())
         .catch(() => done());
 });
+
+after((done) => {
+    mongoose.connection.db.dropDatabase()
+        .then(() => mongoose.connection.close())
+        .then(() => done())
+        .catch(() => done());
+});
