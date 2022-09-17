@@ -4,7 +4,7 @@
   "description": "This is a repo for the AUT's 1401 graduation ceremony",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test node 'mocha --recursive -R min'"
+    "test": "NODE_ENV=test mocha 'tests/**/*.js' --timeout 10000"
   },
   "keywords": [
     "node",
