@@ -19,12 +19,18 @@ module.exports = {
 
         tweetsService.getTweetByIdService(id)
             .then(tweet => {
-                res.send(tweet);
+                if (tweet) {
+                    res.send(tweet);
+                } else {
+                    res.status(404).json({
+                        message: 'tweet not found'
+                    });
+                }
             })
             .catch(err => {
                 console.log(err);
-                res.status(404).json({
-                    message: 'tweet not found'
+                res.status(400).json({
+                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                 });
             });
     },
@@ -34,7 +40,13 @@ module.exports = {
 
         tweetsService.createTweetService(tweetProps)
             .then(tweet => {
-                res.send(tweet);
+               if (tweet) {
+                   res.send(tweet);
+               } else {
+                     res.status(422).json({
+                          message: 'something went wrong'
+                     });
+               }
             })
             .catch(err => {
                 console.log(err);
@@ -48,13 +60,19 @@ module.exports = {
         const id = req.params.id;
 
         tweetsService.deleteTweetService(id)
-            .then(() => {
-                res.send({id});
+            .then((tweet) => {
+                if (tweet) {
+                    res.send(tweet);
+                } else {
+                    res.status(404).json({
+                        message: 'tweet not found'
+                    });
+                }
             })
             .catch(err => {
                 console.log(err);
-                res.status(422).json({
-                    message: 'something went wrong'
+                res.status(400).json({
+                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                 });
             });
     },
