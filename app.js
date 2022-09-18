@@ -3,14 +3,12 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('./src/middlewares/logger.middelware');
 const routes = require('./src/routes/routes');
-const mongoose = require('mongoose');
+const db = require('./src/db/db.bootstrap');
 
 const app = express();
 
 // connect to db
-if (process.env.NODE_ENV !== 'test') {
-    mongoose.connect('mongodb://localhost/aut_graduation');
-}
+db();
 
 app.use(logger);
 app.use(express.json());
