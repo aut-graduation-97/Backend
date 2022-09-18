@@ -1,5 +1,5 @@
 const tweetRoutes = require('./tweet-routes');
 
 module.exports = (app) => {
-    tweetRoutes(app);
+    // define your routes here
 }
