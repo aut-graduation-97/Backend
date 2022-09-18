@@ -1,4 +1,4 @@
-const tweetsService = require('../services/tweets.service');
+const tweetsService = require('../db/tweets.bootstrap');
 
 module.exports = {
     getAllTweets(req, res) {
