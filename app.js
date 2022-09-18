@@ -12,7 +12,6 @@ if (process.env.NODE_ENV !== 'test') {
     mongoose.connect('mongodb://localhost/aut_graduation');
 }
 
-// view engine setup
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -20,7 +19,6 @@ app.use(cookieParser());
 
 // define routes
 routes(app);
-
 
 app.use((req, res, next) => {
     next(createError(404));
