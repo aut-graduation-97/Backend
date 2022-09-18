@@ -8,7 +8,9 @@ module.exports = {
             })
             .catch(err => {
                 console.log(err);
-                res.send('Something went wrong');
+                res.status(422).json({
+                    message: 'something went wrong'
+                });
             });
     },
 
@@ -18,6 +20,12 @@ module.exports = {
         tweetsService.getTweetByIdService(id)
             .then(tweet => {
                 res.send(tweet);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(404).json({
+                    message: 'tweet not found'
+                });
             });
     },
 
@@ -27,6 +35,12 @@ module.exports = {
         tweetsService.createTweetService(tweetProps)
             .then(tweet => {
                 res.send(tweet);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(422).json({
+                    message: 'something went wrong'
+                });
             });
     },
 
@@ -36,6 +50,12 @@ module.exports = {
         tweetsService.deleteTweetService(id)
             .then(() => {
                 res.send({id});
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(422).json({
+                    message: 'something went wrong'
+                });
             });
     },
 };
