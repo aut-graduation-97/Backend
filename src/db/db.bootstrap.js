@@ -7,10 +7,10 @@ const URL = 'mongodb://localhost/aut_graduation';
 module.exports = () => {
     // connect to db
     if (process.env.NODE_ENV !== 'test') {
-        mongoose.connect('mongodb://localhost/aut_graduation')
+        mongoose.connect(URL)
             .then(() => console.log('connected to db'))
             .catch(err => console.error('could not connect to db', err));
     }
-}
+};
 
 
