@@ -1,2 +1,0 @@
-# Aut Graduation 97
-
