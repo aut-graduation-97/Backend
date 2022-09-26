@@ -80,4 +80,33 @@ module.exports = {
         console.log("we send password " + password +" to "+ email);
         return
     },
+
+    forgot_password(req, res){
+        let student_id = req.body.student_id
+        let password = Math.random().toString(36).slice(-8)
+
+
+
+        authService.forgot_password(student_id, password)
+            .then(user => { 
+                if(user){
+                    console.log("your new password is " + password);
+                    // this.sendEmail(info.email, password)
+                    return res.json({
+                        message: 'رمز عبور جدید به ایمیل شما ارسال شد'
+                    })
+                }else{
+                    return res.status(404).json({
+                        message: 'کاربر با این شماره دانشجویی در سیستم وجود ندارد'
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                return res.status(422).json({
+                    message: 'مشکلی در بررسی رخ داد، لطفا دوباره امتحان کنید'
+                });
+            });
+
+    }
 };
