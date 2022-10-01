@@ -57,5 +57,48 @@ module.exports = {
 
     },
 
-
+    tarinResult(req, res){
+        let tarin_id = req.params.id
+        let result = []
+        if(tarins.findTarin(tarin_id)){
+            tarinService.resultTarin(tarin_id)
+            .then(user => { 
+                console.log('in tarinResult controller:----- \n' + user);
+                if(user.length != 0){
+                    user.map(student => {
+                        student.tarin.map(t => {
+                            if(t.property == tarin_id){
+                                result.push({
+                                    student_id: student.studentId,
+                                    name: student.name,
+                                    avatar: student.avatar ? student.avatar : null ,
+                                    count: t.voters.length
+                                })
+                            }
+                        })
+                    })
+                    result.sort((a, b) => b.count - a.count )
+                    
+                    return res.json(
+                        result
+                    )
+                }else{
+                    return res.status(404).json({
+                        message: "برای این ترین کسی ثبت نشده است"
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                return res.status(422).json({
+                    message: 'مشکلی در بررسی رخ داد، لطفا دوباره امتحان کنید'
+                });
+            });
+        }else{
+            return res.status(404).json({
+                message: "همچین ترینی وجود ندارد"
+            });
+        }
+        
+    }
 };

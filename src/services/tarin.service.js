@@ -1,4 +1,5 @@
 const {findUser, addFirstTarin, addVoter} = require('../db/queries/tarin/update');
+const result = require('../db/queries/tarin/result');
 
 module.exports = {
     async updateTarin(student_id, tarin_id, user_info){
@@ -51,4 +52,8 @@ module.exports = {
     async addNewTarin(student_id, id, _id){
         return await addFirstTarin(student_id, id, _id)
     },
+
+    resultTarin(tarin_id){
+        return result.findStudents(tarin_id)
+    }
 }
