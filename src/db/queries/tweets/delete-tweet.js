@@ -7,4 +7,4 @@ const Tweet = require('../../models/tweets');
  */
 module.exports = (_id) => {
     return Tweet.findByIdAndRemove(_id);
-}
+};

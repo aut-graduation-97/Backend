@@ -7,7 +7,7 @@ const dislikeTweet = require('../db/queries/tweets/dislike-tweet');
 
 module.exports = {
     getAllTweetsService() {
-        return getAllTweets()
+        return getAllTweets();
     },
 
     getTweetByIdService(id) {
@@ -29,4 +29,4 @@ module.exports = {
     dislikeTweetService(tweetId, userId) {
         return dislikeTweet(tweetId, userId);
     },
-}
+};

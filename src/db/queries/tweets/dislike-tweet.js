@@ -1,5 +1,4 @@
 const Tweet = require('../../models/tweets');
-const User = require('../../models/users');
 
 /**
  * Dislikes a tweet

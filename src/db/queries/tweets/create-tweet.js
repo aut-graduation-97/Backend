@@ -9,4 +9,4 @@ module.exports = (tweetProps) => {
     const tweet = new Tweet(tweetProps);
 
     return tweet.save();
-}
+};

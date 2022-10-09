@@ -6,4 +6,4 @@ const Tweet = require('../../models/tweets');
  */
 module.exports = () => {
     return Tweet.find({});
-}
+};
