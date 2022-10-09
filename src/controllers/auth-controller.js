@@ -11,8 +11,6 @@ module.exports = {
         authService.registerUser(info, password)
             .then(user => { 
                 if(user){
-                    console.log("email " + user.email + "pass " + password);
-                    // this.sendEmail(info.email, password)
                     return res.json({
                         message: '.کاربر با موفقیت ذخیره شد'
                     })
@@ -76,11 +74,6 @@ module.exports = {
             });
     },
 
-    sendEmail(email, password){
-        console.log("we send password " + password +" to "+ email);
-        return
-    },
-
     forgot_password(req, res){
         let student_id = req.body.student_id
         let password = Math.random().toString(36).slice(-8)
@@ -90,8 +83,6 @@ module.exports = {
         authService.forgot_password(student_id, password)
             .then(user => { 
                 if(user){
-                    console.log("your new password is " + password);
-                    // this.sendEmail(info.email, password)
                     return res.json({
                         message: 'رمز عبور جدید به ایمیل شما ارسال شد'
                     })
