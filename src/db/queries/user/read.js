@@ -1,7 +1,7 @@
 const User = require('../../models/user');
 
 module.exports = {
-    getAll() {
+    async getAll() {
         return User.find();
     },
 
