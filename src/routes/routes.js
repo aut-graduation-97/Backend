@@ -1,9 +1,9 @@
-const authRoutes = require('./auth-routes');
-const tarinRoutes = require('./tarin-routes');
+const authRoutes = require('./auth.route');
+const tarinRoutes = require('./tarin.route');
 
 
 module.exports = (app) => {
     // define your routes here
-    authRoutes(app)
-    tarinRoutes(app)
-}
+    authRoutes(app);
+    tarinRoutes(app);
+};
