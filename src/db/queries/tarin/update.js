@@ -1,11 +1,11 @@
-const User = require('../../models/user');
+const user = require('../../models/user');
 
 module.exports = {
-    findUser(studentId){
-        return User.findOne({studentId})
+    findUser(studentId) {
+        return User.findOne({studentId});
     },
 
-    addFirstTarin(studentId, tarinId, meId){
+    addFirstTarin(studentId, tarinId, meId) {
         return User.updateOne({studentId}, {
             $push: {
                 tarin: {
@@ -13,12 +13,12 @@ module.exports = {
                     'voters': meId
                 }
             }
-        })
+        });
     },
 
-    async addVoter(studentId, tarinId, meId, key){
-        let user = await User.findOne({studentId, 'tarin.property': tarinId})
-        user.tarin[key].voters.push(meId)
-        await user.save()
+    async addVoter(studentId, tarinId, meId, key) {
+        let user = await User.findOne({studentId, 'tarin.property': tarinId});
+        user.tarin[key].voters.push(meId);
+        await user.save();
     }
-}
+};
