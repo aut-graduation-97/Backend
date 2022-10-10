@@ -1,9 +1,9 @@
 const authRoutes = require('./auth.route');
 const tarinRoutes = require('./tarin.route');
-
+const userRoutes = require('./user.route');
 
 module.exports = (app) => {
-    // define your routes here
     authRoutes(app);
     tarinRoutes(app);
+    userRoutes(app);
 };
