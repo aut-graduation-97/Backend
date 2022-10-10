@@ -1,9 +1,15 @@
 const {getAll} = require('../db/queries/user/read');
+const authMiddleware = require('../middlewares/authentication.middleware');
+
 module.exports = {
     getAllUsers(req, res) {
-        res.json({
-            'message': 'لیست تمام کاربران با موفقیت دریافت شد',
-            'users': getAll(),
-        });
+        const auth = new authMiddleware(req, res);
+
+        if (auth.checkToken()) {
+            res.json({
+                'message': 'لیست تمام کاربران با موفقیت دریافت شد',
+                'users': getAll(),
+            });
+        }
     }
 };
