@@ -17,8 +17,10 @@ module.exports = {
                 logger.error(error);
                 res.status(500).json({
                     message: 'مشکلی در دریافت لیست کاربران وجود دارد لطفا دوباره تلاش کنید'
+                });
             });
-                },
+    },
+    
     getTweetsOfUser(req, res) {
         //check if user is logged in
         new authMiddleware(req, res).getUser();
