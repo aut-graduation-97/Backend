@@ -1,13 +1,12 @@
-const userService = require('../services/user.service');
 const authMiddleware = require('../middlewares/authentication.middleware');
-const logger = require('../middlewares/logger.middelware');
+const userService = require('../services/user.service');
 
 module.exports = {
     getAllUsers(req, res) {
         new authMiddleware(req, res).getUser();
         userService.getAllUsers()
             .then(users => {
-                logger.info('list of users fetched successfully with status code 200');
+                console.log('user list has been fetched successfully');
 
                 res.status(200).json({
                     message: 'لیست کاربران با موفقیت دریافت شد',
@@ -15,7 +14,8 @@ module.exports = {
                 });
             })
             .catch(error => {
-                logger.error(error);
+                console.error(error);
+
                 res.status(500).json({
                     message: 'مشکلی در دریافت لیست کاربران وجود دارد لطفا دوباره تلاش کنید'
                 });
@@ -27,7 +27,7 @@ module.exports = {
         new authMiddleware(req, res).getUser();
 
         const studentId = req.params.id;
-        
+
         userService.getTweetsByStudentId(studentId)
             .then(tweets => {
                 logger.info(`Get list of all tweets by student id ${studentId} successfully`);
