@@ -6,6 +6,5 @@ module.exports = (app) => {
     app.post('/tweets', TweetController.createTweet);
     app.delete('/tweets/:id', TweetController.deleteTweet);
 
-    app.get('/tweets/:id/like', TweetController.likeTweet);
-    app.get('/tweets/:id/dislike', TweetController.dislikeTweet);
+    app.post('/tweets/:tweetId', TweetController.likeDislikeTweet);
 };

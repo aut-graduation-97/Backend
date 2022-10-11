@@ -1,5 +1,5 @@
 const tweetsService = require('../services/tweets.service');
-const authentication = require('../middlewares/authentication.middleware');
+// const authentication = require('../middlewares/authentication.middleware');
 
 module.exports = {
     getAllTweets(req, res) {
@@ -78,47 +78,53 @@ module.exports = {
             });
     },
 
-    likeTweet(req, res) {
+    likeDislikeTweet(req, res) {
         const tweetId = req.params.tweetId;
-        const userId = new authentication(req, res).getUser().user_id;
+        // const userId = new authentication(req, res).getUser().user_id;
+        // just for ease of testing, to be removed later
+        const userId = req.body.userId;
+        const kind = req.body.kind;
 
-        tweetsService.likeTweetService(tweetId, userId)
-            .then(tweet => {
-                if (tweet) {
-                    res.send(tweet);
-                } else {
-                    res.status(404).json({
-                        message: 'tweet not found'
+        console.log(`
+            tweetId: ${tweetId}
+            userId: ${userId}
+            kind: ${kind}
+        `);
+
+        if (kind === 'like') {
+            tweetsService.likeTweetService(tweetId, userId)
+                .then(tweet => {
+                    if (tweet) {
+                        res.send(tweet);
+                    } else {
+                        res.status(404).json({
+                            message: 'tweet not found'
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(400).json({
+                        message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                     });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(400).json({
-                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                 });
-            });
-    },
-
-    dislikeTweet(req, res) {
-        const tweetId = req.params.tweetId;
-        const userId = new authentication(req, res).getUser().user_id;
-
-        tweetsService.dislikeTweetService(tweetId, userId)
-            .then(tweet => {
-                if (tweet) {
-                    res.send(tweet);
-                } else {
-                    res.status(404).json({
-                        message: 'tweet not found'
+        } else if (kind === 'dislike') {
+            tweetsService.dislikeTweetService(tweetId, userId)
+                .then(tweet => {
+                    if (tweet) {
+                        res.send(tweet);
+                    } else {
+                        res.status(404).json({
+                            message: 'tweet not found'
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(400).json({
+                        message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                     });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(400).json({
-                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
                 });
-            });
+        }
     },
 };
