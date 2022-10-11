@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
@@ -70,6 +71,21 @@ UserSchema.pre('remove', function (next) {
             next();
         });
 });
+
+UserSchema.pre('save', function(next){
+    bcrypt.hash(this.password , 10 , (err,hash) => {
+        this.password = hash
+        next()
+    })
+})
+
+UserSchema.pre('findOneAndUpdate', function(next){
+    const update = this.getUpdate();
+    bcrypt.hash(update.$set.password , 10 , (err,hash) => {
+        update.$set.password = hash
+        next()
+    })
+})
 
 const User = mongoose.model('user', UserSchema);
 module.exports = User;
