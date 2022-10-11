@@ -3,7 +3,6 @@ const userService = require('../services/user.service');
 
 module.exports = {
     getAllUsers(req, res) {
-        new authMiddleware(req, res).getUser();
         userService.getAllUsers()
             .then(users => {
                 console.log('user list has been fetched successfully');
@@ -37,7 +36,7 @@ module.exports = {
                 });
             })
             .catch(err => {
-                logger.error(err);
+                console.error(err);
 
                 res.status(500).json({
                     message: 'دریافت توییت های کاربر با خطا مواجه شد لطفا دوباره تلاش کنید'
