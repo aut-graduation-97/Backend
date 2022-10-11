@@ -1,4 +1,5 @@
 const tweetsService = require('../services/tweets.service');
+const authentication = require('../middlewares/authentication.middleware');
 
 module.exports = {
     getAllTweets(req, res) {
@@ -79,9 +80,7 @@ module.exports = {
 
     likeTweet(req, res) {
         const tweetId = req.params.tweetId;
-
-        // a fake user id
-        const userId = '5c9b1b4b9c9b1b4b9c9b1b4b';
+        const userId = new authentication(req, res).getUser().user_id;
 
         tweetsService.likeTweetService(tweetId, userId)
             .then(tweet => {
@@ -103,7 +102,7 @@ module.exports = {
 
     dislikeTweet(req, res) {
         const tweetId = req.params.tweetId;
-        const userId = '5c9b1b4b9c9b1b4b9c9b1b4b';
+        const userId = new authentication(req, res).getUser().user_id;
 
         tweetsService.dislikeTweetService(tweetId, userId)
             .then(tweet => {
