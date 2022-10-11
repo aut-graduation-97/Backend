@@ -41,7 +41,6 @@ describe('Tweets controller', () => {
                     .post(`/tweets/${tweet._id.toString()}`)
                     .send(likeProps)
                     .end((response) => {
-                        console.log(response);
                         Tweet.findOne({_id: tweet._id})
                             .then(tweet => {
                                 assert(tweet.likes.length === 1);
@@ -85,7 +84,6 @@ describe('Tweets controller', () => {
                     .post(`/tweets/${tweet._id.toString()}`)
                     .send(disLikeProps)
                     .end((response) => {
-                        console.log(response);
                         Tweet.findOne({_id: tweet._id})
                             .then(tweet => {
                                 assert(tweet.likes.length === 0);

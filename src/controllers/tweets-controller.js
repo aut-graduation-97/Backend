@@ -1,6 +1,8 @@
 const tweetsService = require('../services/tweets.service');
 // const authentication = require('../middlewares/authentication.middleware');
 
+const invalidIdMessage = 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer';
+
 module.exports = {
     getAllTweets(req, res) {
         tweetsService.getAllTweetsService()
@@ -31,7 +33,7 @@ module.exports = {
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
+                    message: invalidIdMessage
                 });
             });
     },
@@ -73,7 +75,7 @@ module.exports = {
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
+                    message: invalidIdMessage
                 });
             });
     },
@@ -84,12 +86,6 @@ module.exports = {
         // just for ease of testing, to be removed later
         const userId = req.body.userId;
         const kind = req.body.kind;
-
-        console.log(`
-            tweetId: ${tweetId}
-            userId: ${userId}
-            kind: ${kind}
-        `);
 
         if (kind === 'like') {
             tweetsService.likeTweetService(tweetId, userId)
@@ -105,7 +101,7 @@ module.exports = {
                 .catch(err => {
                     console.log(err);
                     res.status(400).json({
-                        message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
+                        message: invalidIdMessage
                     });
                 });
         } else if (kind === 'dislike') {
@@ -122,7 +118,7 @@ module.exports = {
                 .catch(err => {
                     console.log(err);
                     res.status(400).json({
-                        message: 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer'
+                        message: invalidIdMessage
                     });
                 });
         }
