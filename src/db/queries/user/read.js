@@ -10,7 +10,7 @@ module.exports = {
         });
     },
 
-    getIdByStudentId(studentId) {
+    async getUserByStudentId(studentId) {
         return User.findOne({studentId});
     }
 };

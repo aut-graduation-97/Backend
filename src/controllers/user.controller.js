@@ -25,7 +25,9 @@ module.exports = {
     getTweetsOfUser(req, res) {
         //check if user is logged in
         new authMiddleware(req, res).getUser();
+
         const studentId = req.params.id;
+        
         userService.getTweetsByStudentId(studentId)
             .then(tweets => {
                 logger.info(`Get list of all tweets by student id ${studentId} successfully`);
