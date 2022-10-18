@@ -1,7 +1,9 @@
 const tweetsService = require('../services/tweets.service');
 const authentication = require('../middlewares/authentication.middleware');
 
-const invalidIdMessage = 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer';
+const invalidIdMsg = 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer';
+const someThingWentWrongMsg = 'something went wrong';
+const tweetNotFoundMsg = 'tweet not found';
 
 module.exports = {
     getAllTweets(req, res) {
@@ -12,7 +14,7 @@ module.exports = {
             .catch(err => {
                 console.log(err);
                 res.status(422).json({
-                    message: 'something went wrong'
+                    message: someThingWentWrongMsg
                 });
             });
     },
@@ -26,14 +28,14 @@ module.exports = {
                     res.send(tweet);
                 } else {
                     res.status(404).json({
-                        message: 'tweet not found'
+                        message: tweetNotFoundMsg
                     });
                 }
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: invalidIdMessage
+                    message: invalidIdMsg
                 });
             });
     },
@@ -47,14 +49,14 @@ module.exports = {
                     res.send(tweet);
                 } else {
                     res.status(422).json({
-                        message: 'something went wrong'
+                        message: someThingWentWrongMsg
                     });
                 }
             })
             .catch(err => {
                 console.log(err);
                 res.status(422).json({
-                    message: 'something went wrong'
+                    message: someThingWentWrongMsg
                 });
             });
     },
@@ -68,21 +70,22 @@ module.exports = {
                     res.send(tweet);
                 } else {
                     res.status(404).json({
-                        message: 'tweet not found'
+                        message: tweetNotFoundMsg
                     });
                 }
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: invalidIdMessage
+                    message: invalidIdMsg
                 });
             });
     },
 
     likeTweet(req, res) {
         const tweetId = req.params.tweetId;
-        const userId = new authentication(req, res).getUser().user_id;
+        // const userId = new authentication(req, res).getUser().user_id;
+        const userId = req.body.userId;
 
         tweetsService.likeTweetService(tweetId, userId)
             .then(tweet => {
@@ -90,21 +93,22 @@ module.exports = {
                     res.send(tweet);
                 } else {
                     res.status(404).json({
-                        message: 'tweet not found'
+                        message: tweetNotFoundMsg
                     });
                 }
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: invalidIdMessage
+                    message: invalidIdMsg
                 });
             });
     },
 
     dislikeTweet(req, res) {
         const tweetId = req.params.tweetId;
-        const userId = new authentication(req, res).getUser().user_id;
+        // const userId = new authentication(req, res).getUser().user_id;
+        const userId = req.body.userId;
 
         tweetsService.dislikeTweetService(tweetId, userId)
             .then(tweet => {
@@ -112,14 +116,14 @@ module.exports = {
                     res.send(tweet);
                 } else {
                     res.status(404).json({
-                        message: 'tweet not found'
+                        message: tweetNotFoundMsg
                     });
                 }
             })
             .catch(err => {
                 console.log(err);
                 res.status(400).json({
-                    message: invalidIdMessage
+                    message: invalidIdMsg
                 });
             });
     },

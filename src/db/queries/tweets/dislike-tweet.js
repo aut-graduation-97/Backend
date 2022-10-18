@@ -7,7 +7,7 @@ const Tweet = require('../../models/tweets');
  * @return {promise} A promise that resolves with the Tweet that matches the id
  */
 module.exports = (tweetId, userId) => {
-    return Tweet.update(
+    return Tweet.updateOne(
         {_id: tweetId, likes: userId},
         {$pull: {likes: userId}}
     );
