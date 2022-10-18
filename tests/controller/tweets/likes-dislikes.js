@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Tweet = mongoose.model('tweet');
 const User = require('../../../src/db/models/user');
 
-describe('Tweets controller', () => {
+xdescribe('Tweets controller', () => {
     it('POST to /tweets/:id/like can like a tweet', done => {
         const tweetCreator = new User({
             name: 'Tweet Creator',

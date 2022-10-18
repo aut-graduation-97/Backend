@@ -1,4 +1,4 @@
-const TweetController = require('../controllers/tweets-controller');
+const TweetController = require('../controllers/tweets.controller');
 
 module.exports = (app) => {
     app.get('/tweets', TweetController.getAllTweets);
