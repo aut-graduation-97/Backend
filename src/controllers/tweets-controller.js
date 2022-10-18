@@ -1,5 +1,5 @@
 const tweetsService = require('../services/tweets.service');
-// const authentication = require('../middlewares/authentication.middleware');
+const authentication = require('../middlewares/authentication.middleware');
 
 const invalidIdMessage = 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer';
 
@@ -80,47 +80,47 @@ module.exports = {
             });
     },
 
-    likeDislikeTweet(req, res) {
+    likeTweet(req, res) {
         const tweetId = req.params.tweetId;
-        // const userId = new authentication(req, res).getUser().user_id;
-        // just for ease of testing, to be removed later
-        const userId = req.body.userId;
-        const kind = req.body.kind;
+        const userId = new authentication(req, res).getUser().user_id;
 
-        if (kind === 'like') {
-            tweetsService.likeTweetService(tweetId, userId)
-                .then(tweet => {
-                    if (tweet) {
-                        res.send(tweet);
-                    } else {
-                        res.status(404).json({
-                            message: 'tweet not found'
-                        });
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(400).json({
-                        message: invalidIdMessage
+        tweetsService.likeTweetService(tweetId, userId)
+            .then(tweet => {
+                if (tweet) {
+                    res.send(tweet);
+                } else {
+                    res.status(404).json({
+                        message: 'tweet not found'
                     });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json({
+                    message: invalidIdMessage
                 });
-        } else if (kind === 'dislike') {
-            tweetsService.dislikeTweetService(tweetId, userId)
-                .then(tweet => {
-                    if (tweet) {
-                        res.send(tweet);
-                    } else {
-                        res.status(404).json({
-                            message: 'tweet not found'
-                        });
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.status(400).json({
-                        message: invalidIdMessage
+            });
+    },
+
+    dislikeTweet(req, res) {
+        const tweetId = req.params.tweetId;
+        const userId = new authentication(req, res).getUser().user_id;
+
+        tweetsService.dislikeTweetService(tweetId, userId)
+            .then(tweet => {
+                if (tweet) {
+                    res.send(tweet);
+                } else {
+                    res.status(404).json({
+                        message: 'tweet not found'
                     });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(400).json({
+                    message: invalidIdMessage
                 });
-        }
+            });
     },
 };
