@@ -32,5 +32,20 @@ module.exports = {
 
     urlPath(path) {
         return path.replace(/\\/g, '/').replace('public/', '')
-    }
+    },
+
+    getAllImages(req, res) {
+        galleryService.getAllImages()
+            .then(gallery => {
+                return res.json(
+                    gallery
+                )
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).json({
+                    message: 'مشکلی در بررسی رخ داد، لطفا دوباره امتحان کنید'
+                });
+            });
+    },
 };
