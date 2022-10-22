@@ -48,4 +48,30 @@ module.exports = {
                 });
             });
     },
+
+    deleteImage(req, res) {
+        let name = req.params.name;
+        let user = new authentication(req, res)
+        let me = user.getUser()
+
+        if(me.super_user) {
+            galleryService.deleteImage(name)
+                .then( image => {
+                    console.log(image)
+                    res.json({
+                        message: 'عکس با موفقیت حذف شد'
+                    });
+                })
+                .catch(err => {
+                    console.error(err);
+                    res.status(500).json({
+                        message: 'مشکلی در بررسی رخ داد، لطفا دوباره امتحان کنید'
+                    });
+                });
+        } else {
+            return res.status(403).json({
+                message: 'شما دسترسی لازم برای انجام این کار را ندارید'
+            });
+        }
+    },
 };
