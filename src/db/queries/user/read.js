@@ -5,7 +5,7 @@ module.exports = {
         return User.find({}, ['name', 'studentId', 'avatar']);
     },
 
-    async getUserByStudentId(studentId) {
+    getUserByStudentId(studentId) {
         return User.findOne({studentId});
     }
 };

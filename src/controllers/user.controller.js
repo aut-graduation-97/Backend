@@ -29,7 +29,7 @@ module.exports = {
 
         userService.getTweetsByStudentId(studentId)
             .then(tweets => {
-                logger.info(`Get list of all tweets by student id ${studentId} successfully`);
+                console.log(`Get list of all tweets by student id ${studentId} successfully`);
                 res.status(200).json({
                     message: 'لیست توییت ها با موفقیت دریافت شد',
                     tweets

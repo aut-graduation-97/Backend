@@ -1,6 +1,6 @@
 const Tweet = require('../../models/tweets');
 module.exports = {
-    async getTweetsByUserId(id) {
+    getTweetsByUserId(id) {
         return Tweet.find({userId: id});
     }
 };
