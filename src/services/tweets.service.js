@@ -18,8 +18,8 @@ module.exports = {
         return createTweet(tweetProps);
     },
 
-    deleteTweetService(id) {
-        return deleteTweet(id);
+    deleteTweetService(tweetId, userId) {
+        return deleteTweet(tweetId, userId);
     },
 
     likeTweetService(tweetId, userId) {

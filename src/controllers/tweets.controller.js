@@ -1,6 +1,11 @@
 const tweetsService = require('../services/tweets.service');
 const authentication = require('../middlewares/authentication.middleware');
 
+// const tweetCreatedMsg = 'Tweet created successfully';
+const tweetCreatedMsg = 'توییت با موفقیت ایجاد شد';
+// const tweetDeletedMsg = 'Tweet deleted successfully';
+const tweetDeletedMsg = 'توییت با موفقیت حذف شد';
+
 // const invalidIdMsg = 'argument passed in must be a string of 12 bytes or a string of 24 hex characters or an integer';
 const invalidIdMsg = 'آرگومان وارد شده باید یک رشته از 12 بایت یا یک رشته از 24 کاراکتر هگزا داشته باشد یا یک عدد باشد';
 // const someThingWentWrongMsg = 'something went wrong';
@@ -49,7 +54,9 @@ module.exports = {
         tweetsService.createTweetService(tweetProps)
             .then(tweet => {
                 if (tweet) {
-                    res.send(tweet);
+                    res.json({
+                        message: tweetCreatedMsg
+                    });
                 } else {
                     res.status(422).json({
                         message: someThingWentWrongMsg
@@ -65,12 +72,16 @@ module.exports = {
     },
 
     deleteTweet(req, res) {
-        const id = req.params.id;
+        const tweetId = req.params.id;
+        const userId = new authentication(req, res).getUser().user_id;
+        // const userId = req.body.userId;
 
-        tweetsService.deleteTweetService(id)
+        tweetsService.deleteTweetService(tweetId, userId)
             .then((tweet) => {
                 if (tweet) {
-                    res.send(tweet);
+                    res.json({
+                        message: tweetDeletedMsg
+                    });
                 } else {
                     res.status(404).json({
                         message: tweetNotFoundMsg
