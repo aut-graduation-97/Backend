@@ -5,7 +5,7 @@ module.exports = {
         return User.find({}, ['name', 'studentId', 'avatar']);
     },
 
-    getById(id) {
-        return User.findById(id);
+    getUserByStudentId(studentId) {
+        return User.findOne({studentId});
     }
 };
