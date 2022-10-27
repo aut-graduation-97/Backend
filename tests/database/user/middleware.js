@@ -4,7 +4,7 @@ const assert = require('assert');
 const User = require('../../../src/db/models/user');
 const Tweet = require('../../../src/db/models/tweets');
 
-describe('Middleware (remove all of user tweets, after its deletion)', () => {
+describe('Middleware (remove all of user tweet, after its deletion)', () => {
     let joe, tweet1, tweet2;
 
     beforeEach((done) => {
@@ -33,7 +33,7 @@ describe('Middleware (remove all of user tweets, after its deletion)', () => {
             .then(() => done());
     });
 
-    it('users clean up dangling tweets on delete', (done) => {
+    it('users clean up dangling tweet on delete', (done) => {
         joe.remove()
             .then(() => Tweet.count())
             .then((count) => {
