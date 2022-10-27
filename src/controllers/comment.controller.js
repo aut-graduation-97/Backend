@@ -18,7 +18,25 @@ module.exports = {
         });
     },
 
-    createComment() {
+    createCommentForUser(req, res) {
+        const studentId = req.params.id;
 
+        const comment = {
+            text: req.body.text,
+            date: Date.now()
+        };
+
+        commentService.createCommentOnUser(studentId, comment)
+            .then(() => {
+                res.status(201).json({
+                    message: 'نظر شما با موفقیت ذخیره شد.'
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(501).json({
+                    message: 'مشکلی در ذخیره‌ی نظر شما پیش امد لطفا دوباره تلاش کنید.'
+                });
+            });
     }
 };
