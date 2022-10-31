@@ -31,6 +31,9 @@ describe('Tweets controller', () => {
             .then(count => {
                 request(app)
                     .delete(`/tweets/${tweet._id}`)
+                    .send({
+                        userId: user._id.toString(),
+                    })
                     .end(() => {
                         Tweet.count()
                             .then(newCount => {

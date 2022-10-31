@@ -74,8 +74,8 @@ module.exports = {
         const userId = new authentication(req, res).getUser().user_id;
 
         tweetsService.deleteTweetService(tweetId, userId)
-            .then((tweet) => {
-                if (tweet) {
+            .then((operationResult) => {
+                if (operationResult.deletedCount == 1) {
                     res.json({
                         message: tweetDeletedMsg
                     });
