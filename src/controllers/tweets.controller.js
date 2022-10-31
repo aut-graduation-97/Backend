@@ -45,6 +45,9 @@ module.exports = {
 
     createTweet(req, res) {
         const tweetProps = req.body;
+        const userId = new authentication(req, res).getUser().user_id;
+
+        tweetProps.userId = userId;
 
         tweetsService.createTweetService(tweetProps)
             .then(tweet => {
