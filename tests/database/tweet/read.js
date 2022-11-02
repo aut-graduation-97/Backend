@@ -49,7 +49,7 @@ describe('Reading records', () => {
             });
     });
 
-    it('finds all tweets with a userId', (done) => {
+    it('finds all tweet with a userId', (done) => {
         Tweet.find({userId: user._id.toString()})
             .then((tweets) => {
                 assert(tweets[0]._id.toString() === tweet._id.toString());
