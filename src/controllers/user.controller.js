@@ -43,5 +43,42 @@ module.exports = {
                 });
             });
 
+    },
+
+    updateUserData(req, res) {
+        const auth = new authMiddleware(req, res).getUser();
+        const studentId = req.params.id;
+
+        // check for a user updating someones else data
+        if (auth.id !== studentId) {
+            res.status(401).json({
+                message: 'شما دسترسی به اپدیت کردن اطلاعات بقیه ی کاربران ندارید.'
+            });
+        }
+
+
+        const newUserData = {
+            name: req.body.name,
+            studentId: req.body.student_id,
+            password: req.body.password,
+            github: req.body.github,
+            spotify: req.body.spotify,
+            email: req.body.email,
+            phone: req.body.phone,
+            telegram: req.body.telegram,
+            twitter: req.body.twitter,
+            instagram: req.body.instagram,
+            linkedin: req.body.linkedin,
+            bio: req.body.bio,
+            avatar: req.body.avatar
+        };
+
+        userService.updateUserData(studentId, newUserData).then(user => {
+            console.log(`User #${user.id} has been updated`);
+            res.status(200).json({
+                message: 'اطلاعات کاربر با موفقیت اپدیت شد.',
+                user
+            });
+        });
     }
 };
